@@ -27,9 +27,10 @@ import {
 
 type SectionProps = PropsWithChildren<{
   title: string;
+  status: string;
 }>;
 
-function Section({children, title}: SectionProps): JSX.Element {
+function Section({children, title, status }: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -49,8 +50,12 @@ function Section({children, title}: SectionProps): JSX.Element {
             color: isDarkMode ? Colors.light : Colors.dark,
           },
         ]}>
+          
+      <Text style={styles.status}>{status}</Text>
+      <View style={[styles.bar, { backgroundColor: 'blue' }]} />
         {children}
       </Text>
+      
     </View>
   );
 }
@@ -71,16 +76,16 @@ function App(): JSX.Element {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Header />
+        {/* <Header /> */}
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
+          <Section title="welcome back, Stanley!">
+            {/* Edit <Text style={styles.highlight}>App.tsx</Text> to change this
+            screen and then come back to see your edits. */}
           </Section>
-          <Section title="See Your Changes">
+          {/* <Section title="Overall Status">
             <ReloadInstructions />
           </Section>
           <Section title="Debug">
@@ -89,7 +94,11 @@ function App(): JSX.Element {
           <Section title="Learn More">
             Read the docs to discover what to do next:
           </Section>
-          <LearnMoreLinks />
+          <LearnMoreLinks /> */}
+          <Section title="Overall Status" status='Good'></Section>
+          <Section title="Carbs" status='Good'></Section>
+          <Section title="Protein" status='Good'></Section>
+          <Section title="Fats" status='Good'></Section>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -112,6 +121,16 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  bar: {
+    height: 4,
+    backgroundColor: 'blue',
+    marginBottom: 8,
+  },
+  status: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 8,
   },
 });
 
